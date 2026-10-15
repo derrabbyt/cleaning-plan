@@ -1,0 +1,7 @@
+.neon
+node_modules/
+.env
+.env.*
+/dist/
+/.angular/
+src/app/db-config.generated.ts

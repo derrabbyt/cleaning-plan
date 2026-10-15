@@ -1,0 +1,27 @@
+<main>
+  <h1>Cleaning plan</h1>
+
+  <form (ngSubmit)="add()">
+    <input name="title" [(ngModel)]="title" placeholder="Task" required maxlength="200" />
+    <input name="room" [(ngModel)]="room" placeholder="Room" maxlength="100" />
+    <button type="submit">Add</button>
+  </form>
+
+  @if (error()) {
+    <p class="error">{{ error() }}</p>
+  }
+
+  <ul>
+    @for (task of items(); track task.id) {
+      <li [class.done]="task.done">
+        <label>
+          <input type="checkbox" [checked]="task.done" (change)="toggle(task)" />
+          {{ task.title }} @if (task.room) {<small>({{ task.room }})</small>}
+        </label>
+        <button type="button" (click)="remove(task)" aria-label="Delete">✕</button>
+      </li>
+    } @empty {
+      <li>No tasks yet.</li>
+    }
+  </ul>
+</main>
